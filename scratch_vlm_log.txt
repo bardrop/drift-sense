@@ -17,3 +17,31 @@ Iter 40: Train loss [92m0.21098380[0m, Learning Rate 1.000e-04, It/sec 0.469, 
 Iter 50: Train loss [92m0.20233116[0m, Learning Rate 1.000e-04, It/sec 0.462, Tokens/sec 168.683, Trained Tokens 18250, Peak mem 13.407 GB
 Iter 60: Train loss [92m0.19866140[0m, Learning Rate 1.000e-04, It/sec 0.462, Tokens/sec 168.607, Trained Tokens 21900, Peak mem 13.407 GB
 Iter 70: Train loss [92m0.19697429[0m, Learning Rate 1.000e-04, It/sec 0.456, Tokens/sec 166.307, Trained Tokens 25550, Peak mem 13.407 GB
+Iter 80: Train loss [92m0.19645170[0m, Learning Rate 1.000e-04, It/sec 0.451, Tokens/sec 164.771, Trained Tokens 29200, Peak mem 13.407 GB
+Iter 90: Train loss [92m0.19943932[0m, Learning Rate 1.000e-04, It/sec 0.370, Tokens/sec 135.153, Trained Tokens 32850, Peak mem 13.407 GB
+Iter 100: Train loss [92m0.19648659[0m, Learning Rate 1.000e-04, It/sec 0.369, Tokens/sec 134.840, Trained Tokens 36500, Peak mem 13.407 GB
+[94mIter 100: Saved adapter weights to vlm/adapters/adapters.safetensors and vlm/adapters/0000100_adapters.safetensors.[0m
+Iter 110: Train loss [92m0.19613323[0m, Learning Rate 1.000e-04, It/sec 0.373, Tokens/sec 136.165, Trained Tokens 40150, Peak mem 13.407 GB
+Iter 120: Train loss [92m0.19476116[0m, Learning Rate 1.000e-04, It/sec 0.374, Tokens/sec 136.331, Trained Tokens 43800, Peak mem 13.407 GB
+Iter 130: Train loss [92m0.19733474[0m, Learning Rate 1.000e-04, It/sec 0.371, Tokens/sec 135.425, Trained Tokens 47450, Peak mem 13.407 GB
+Iter 140: Train loss [92m0.19780469[0m, Learning Rate 1.000e-04, It/sec 0.374, Tokens/sec 136.690, Trained Tokens 51100, Peak mem 13.407 GB
+Iter 150: Train loss [92m0.19809160[0m, Learning Rate 1.000e-04, It/sec 0.367, Tokens/sec 134.126, Trained Tokens 54750, Peak mem 13.407 GB
+Iter 160: Train loss [92m0.19677678[0m, Learning Rate 1.000e-04, It/sec 0.369, Tokens/sec 134.559, Trained Tokens 58400, Peak mem 13.414 GB
+Iter 170: Train loss [92m0.19389713[0m, Learning Rate 1.000e-04, It/sec 0.370, Tokens/sec 135.172, Trained Tokens 62050, Peak mem 13.414 GB
+Iter 180: Train loss [92m0.19462490[0m, Learning Rate 1.000e-04, It/sec 0.372, Tokens/sec 135.771, Trained Tokens 65700, Peak mem 13.414 GB
+Iter 190: Train loss [92m0.19673305[0m, Learning Rate 1.000e-04, It/sec 0.372, Tokens/sec 135.685, Trained Tokens 69350, Peak mem 13.414 GB
+Iter 200: Train loss [92m0.19675353[0m, Learning Rate 1.000e-04, It/sec 0.370, Tokens/sec 135.012, Trained Tokens 73000, Peak mem 13.414 GB
+[94mIter 200: Saved adapter weights to vlm/adapters/adapters.safetensors and vlm/adapters/0000200_adapters.safetensors.[0m
+Iter 210: Train loss [92m0.19747654[0m, Learning Rate 1.000e-04, It/sec 0.370, Tokens/sec 135.098, Trained Tokens 76650, Peak mem 13.414 GB
+Iter 220: Train loss [92m0.19748226[0m, Learning Rate 1.000e-04, It/sec 0.372, Tokens/sec 135.709, Trained Tokens 80300, Peak mem 13.414 GB
+Iter 230: Train loss [92m0.19701666[0m, Learning Rate 1.000e-04, It/sec 0.367, Tokens/sec 133.846, Trained Tokens 83950, Peak mem 13.414 GB
+Iter 240: Train loss [92m0.19823794[0m, Learning Rate 1.000e-04, It/sec 0.373, Tokens/sec 136.146, Trained Tokens 87600, Peak mem 13.414 GB
+Iter 250: Train loss [92m0.19591266[0m, Learning Rate 1.000e-04, It/sec 0.374, Tokens/sec 136.445, Trained Tokens 91250, Peak mem 13.414 GB
+Iter 260: Train loss [92m0.19616147[0m, Learning Rate 1.000e-04, It/sec 0.372, Tokens/sec 135.867, Trained Tokens 94900, Peak mem 13.414 GB
+Iter 270: Train loss [92m0.19653890[0m, Learning Rate 1.000e-04, It/sec 0.374, Tokens/sec 136.410, Trained Tokens 98550, Peak mem 13.414 GB
+Iter 280: Train loss [92m0.19751674[0m, Learning Rate 1.000e-04, It/sec 0.374, Tokens/sec 136.538, Trained Tokens 102200, Peak mem 13.414 GB
+Iter 290: Train loss [92m0.19617569[0m, Learning Rate 1.000e-04, It/sec 0.374, Tokens/sec 136.578, Trained Tokens 105850, Peak mem 13.414 GB
+Iter 300: Train loss [92m0.19701793[0m, Learning Rate 1.000e-04, It/sec 0.380, Tokens/sec 138.698, Trained Tokens 109500, Peak mem 13.414 GB
+[94mIter 300: Saved adapter weights to vlm/adapters/adapters.safetensors and vlm/adapters/0000300_adapters.safetensors.[0m
+Iter 310: Train loss [92m0.19750088[0m, Learning Rate 1.000e-04, It/sec 0.468, Tokens/sec 170.888, Trained Tokens 113150, Peak mem 13.414 GB
+Iter 320: Train loss [92m0.19631017[0m, Learning Rate 1.000e-04, It/sec 0.469, Tokens/sec 171.145, Trained Tokens 116800, Peak mem 13.414 GB
