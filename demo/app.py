@@ -103,9 +103,37 @@ def _result_text(out, truth_xy):
         facts += f", error_vs_expected={err:.2f} px ({err*10:.0f} nm)"
     return "\n\n".join(lines), facts
 
+def _paths_from_content(content):
+    """Pull file paths out of a history message, whatever shape Gradio used."""
+    if isinstance(content, str):
+        return []
+    if isinstance(content, dict):
+        p = content.get("path")
+        return [p] if p else []
+    if isinstance(content, (tuple, list)):
+        out = []
+        for c in content:
+            out += [c] if isinstance(c, str) and os.path.exists(c) else _paths_from_content(c)
+        return out
+    p = getattr(content, "path", None)
+    return [p] if p else []
+
 def respond(message, history):
     text = (message.get("text") or "").strip()
     files = [f for f in (message.get("files") or [])]
+
+    # one image now + one in the previous message = a pair
+    # (unless the text asks for patch mode: coordinates or cut/patch keywords)
+    wants_patch = bool(re.search(r"\(?\s*\d{2,3}\s*[, ]\s*\d{2,3}\s*\)?|cut|patch", text, re.I))
+    if len(files) == 1 and not wants_patch:
+        prev = []
+        for h in reversed(history or []):
+            if isinstance(h, dict) and h.get("role") == "user":
+                prev = _paths_from_content(h.get("content"))
+                if prev:
+                    break
+        if prev:
+            files = [prev[-1]] + files
 
     # "example" -> load a held-out test pair the model never saw
     m = re.search(r"example\s*(\d+)?", text, re.I)
@@ -172,6 +200,11 @@ def respond(message, history):
 demo = gr.ChatInterface(
     respond,
     multimodal=True,
+    textbox=gr.MultimodalTextbox(
+        file_count="multiple",
+        file_types=["image"],
+        placeholder="Attach image(s), type nothing, press send…",
+    ),
     title="Drift-Sense",
     description="Give me a zoomed-in pattern and a zoomed-out image — I find the pattern "
                 "(closest to the centre if it repeats) to ~0.5 px and answer in English. "
