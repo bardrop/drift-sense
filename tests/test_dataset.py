@@ -17,3 +17,29 @@ def test_split_sizes_and_determinism():
     assert train[0]["pair_id"] == 1
     assert val[0]["pair_id"] == 401
     assert test[-1]["pair_id"] == 500
+
+import numpy as np
+from drift_sense.dataset import (
+    DriftPairDataset, make_target, search_px_to_heat, heat_to_search_px, HEAT,
+)
+
+def test_coord_round_trip():
+    for x in [0.0, 242.25, 500.0, 999.0]:
+        assert abs(heat_to_search_px(search_px_to_heat(x)) - x) < 1e-6
+
+def test_target_peak_matches_gt():
+    t = make_target(242.25, 240.71)
+    assert t.shape == (HEAT, HEAT)
+    hy, hx = np.unravel_index(t.argmax(), t.shape)
+    assert abs(heat_to_search_px(hx) - 242.25) <= 8.0
+    assert abs(heat_to_search_px(hy) - 240.71) <= 8.0
+    assert t.max() <= 1.0 and t.min() >= 0.0
+
+def test_dataset_item_shapes():
+    rows = load_manifest(MANIFEST)[:2]
+    ds = DriftPairDataset(rows)
+    ref, search, target, gt = ds[0]
+    assert tuple(ref.shape) == (1, 50, 50)
+    assert tuple(search.shape) == (1, 500, 500)
+    assert tuple(target.shape) == (125, 125)
+    assert abs(float(gt[0]) - rows[0]["gt_x"]) < 1e-3
