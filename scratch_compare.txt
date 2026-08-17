@@ -1,1 +1,7 @@
 Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 1911.19it/s]
+| model | mean_err (px) | <=5px | <=10px | s/pair |
+|---|---|---|---|---|
+| Siamese CNN | 2.51 | 96% | 100% | 0.04 |
+| Qwen3.5-4B LoRA | 35.79 | 0% | 4% | 1.83 |
+
+VLM parse failures: 0%
