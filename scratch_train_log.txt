@@ -1,0 +1,6 @@
+/Users/mradulsingh/hackathon/drift_sense/train.py:21: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:823.)
+  total += float(loss) * ref.shape[0]
+epoch 01 loss 0.1227 val {'mean_err': 424.6278381347656, 'pct5': 0.05999999865889549, 'pct10': 0.10000000149011612}
+epoch 02 loss 0.0275 val {'mean_err': 463.3099365234375, 'pct5': 0.019999999552965164, 'pct10': 0.03999999910593033}
+epoch 03 loss 0.0193 val {'mean_err': 463.9092712402344, 'pct5': 0.05999999865889549, 'pct10': 0.05999999865889549}
