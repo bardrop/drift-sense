@@ -5,9 +5,11 @@ import torch.nn.functional as F
 from drift_sense.dataset import HEAT
 
 def _block(cin, cout, stride=1):
+    # GroupNorm, not BatchNorm: BN running stats diverge badly from batch
+    # stats here (val err 52px vs 4px), GN behaves the same in train and eval.
     return nn.Sequential(
         nn.Conv2d(cin, cout, 3, stride=stride, padding=1),
-        nn.BatchNorm2d(cout),
+        nn.GroupNorm(8, cout),
         nn.ReLU(inplace=True),
     )
 

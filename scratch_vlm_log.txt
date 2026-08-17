@@ -1,0 +1,19 @@
+INFO:__main__:[95mLoading model from mlx-community/Qwen3.5-4B-MLX-4bit[0m
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 4430.45it/s]
+INFO:__main__:[95mLoading dataset from vlm/data[0m
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 400 examples [00:00, 84460.41 examples/s]
+Generating validation split: 0 examples [00:00, ? examples/s]Generating validation split: 50 examples [00:00, 31707.77 examples/s]
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 50 examples [00:00, 61284.40 examples/s]
+INFO:__main__:[4mSetting up LoRA[0m
+#trainable params: 16.232448 M || all params: 4539.264 M || trainable%: 0.358%
+INFO:__main__:[95mSetting up optimizer[0m
+INFO:__main__:[95mTraining model (sft)[0m
+[95mStarting training..., iterations: 800[0m
+[94mNo validation dataset provided — training will run without validation.[0m
+Iter 10: Train loss [92m7.24986496[0m, Learning Rate 1.000e-04, It/sec 0.338, Tokens/sec 123.485, Trained Tokens 3650, Peak mem 13.407 GB
+Iter 20: Train loss [92m0.51380396[0m, Learning Rate 1.000e-04, It/sec 0.401, Tokens/sec 146.279, Trained Tokens 7300, Peak mem 13.407 GB
+Iter 30: Train loss [92m0.23869448[0m, Learning Rate 1.000e-04, It/sec 0.471, Tokens/sec 171.897, Trained Tokens 10950, Peak mem 13.407 GB
+Iter 40: Train loss [92m0.21098380[0m, Learning Rate 1.000e-04, It/sec 0.469, Tokens/sec 171.237, Trained Tokens 14600, Peak mem 13.407 GB
+Iter 50: Train loss [92m0.20233116[0m, Learning Rate 1.000e-04, It/sec 0.462, Tokens/sec 168.683, Trained Tokens 18250, Peak mem 13.407 GB
+Iter 60: Train loss [92m0.19866140[0m, Learning Rate 1.000e-04, It/sec 0.462, Tokens/sec 168.607, Trained Tokens 21900, Peak mem 13.407 GB
+Iter 70: Train loss [92m0.19697429[0m, Learning Rate 1.000e-04, It/sec 0.456, Tokens/sec 166.307, Trained Tokens 25550, Peak mem 13.407 GB
