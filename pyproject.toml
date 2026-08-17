@@ -1,0 +1,8 @@
+[project]
+name = "hackathon"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.5.2",
+    "opencv-python>=5.0.0.93",
+]
