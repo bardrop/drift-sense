@@ -5,3 +5,4 @@ vlm/adapters/
 vlm/data/
 *.pt
 dataset_drift_sense/
+demo/web_images/

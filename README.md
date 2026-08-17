@@ -67,6 +67,20 @@ uv run python -m vlm.eval
 
 Compare both: `uv run python compare.py`. Tests: `uv run pytest`.
 
+## Demo
+
+```bash
+sh demo/fetch_web_images.sh     # once: grab sample images from Wikimedia Commons
+uv run python demo/app.py       # opens Gradio at http://127.0.0.1:7860
+```
+
+Three tabs: dataset pairs (green = truth, red = prediction), "any image →
+make a pair" (cut a patch from any picture, the system finds it), and a
+no-match honesty check. The CNN + sub-pixel stage does the measuring; the
+Qwen3.5-4B VLM narrates the result in English. Outside the CNN's trained
+domain, a classical NCC + phase-correlation fallback takes over (the UI
+labels which engine answered).
+
 ## Weights
 
 Trained weights are on Hugging Face:
