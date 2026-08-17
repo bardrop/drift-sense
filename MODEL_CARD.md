@@ -29,12 +29,15 @@ realistic noise, blur, rotation (±2°), and stage drift (100–500 nm).
 
 ## Results (held-out test split, 50 pairs)
 
-| model | mean err (px) | ≤5 px | ≤10 px | s/pair |
+| model | mean err (px) | ≤1 px | ≤5 px | s/pair |
 |---|---|---|---|---|
-| Siamese CNN | 2.51 | 96% | 100% | 0.04 |
-| Qwen3.5-4B LoRA | 35.79 | 0% | 4% | 1.83 |
+| Siamese CNN + sub-pixel refine | 0.50 | 96% | 98% | 0.05 |
+| Siamese CNN (coarse) | 2.51 | 10% | 96% | 0.04 |
+| Qwen3.5-4B LoRA | 35.79 | 0% | 0% | 1.83 |
 
-1 px = 10 nm. The CNN localizes to ~25 nm on average.
+1 px = 10 nm. With phase-correlation refinement the CNN localizes to ~5 nm
+mean error. A blind nominal-spot baseline scores 34.9 px; the VLM does not
+beat it.
 
 ## Usage
 

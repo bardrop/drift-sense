@@ -6,12 +6,15 @@ Problem Statement 02, Hackathon 2026.
 
 Two models, same task, honest comparison:
 
-| model | mean err (px) | ≤5 px | ≤10 px | s/pair |
+| model | mean err (px) | ≤1 px | ≤5 px | s/pair |
 |---|---|---|---|---|
-| **Siamese CNN** | **2.51** | **96%** | **100%** | 0.04 |
-| Qwen3.5-4B LoRA (VLM) | 35.79 | 0% | 4% | 1.83 |
+| **Siamese CNN + sub-pixel refine** | **0.50** | **96%** | **98%** | 0.05 |
+| Siamese CNN (coarse) | 2.51 | 10% | 96% | 0.04 |
+| Qwen3.5-4B LoRA (VLM) | 35.79 | 0% | 0% | 1.83 |
 
-Held-out test split (50 pairs). 1 px = 10 nm, so the CNN localizes to ~25 nm.
+Held-out test split (50 pairs). 1 px = 10 nm, so the refined result is ~5 nm
+mean error. A blind always-guess-the-nominal-spot baseline scores 34.9 px —
+the VLM does not beat it.
 
 ## How it works
 
@@ -28,6 +31,13 @@ and the peak of the resulting heatmap is the location. Two details matter:
 Confidence is the probability mass near the chosen peak. Ambiguous matches
 score low; below 0.5 the CLI reports "no pattern found". If several peaks
 are near-equal, the one closest to the image centre wins.
+
+A final **sub-pixel stage** (`drift_sense/refine.py`) polishes the CNN's
+answer: it crops a 100×100 window from the full-resolution search image and
+phase-correlates it against the 10x-downscaled reference
+(`cv2.phaseCorrelate`, Hanning window). This takes 2.5 px error down to
+0.5 px, with a fallback to the coarse answer when the correction is
+implausibly large.
 
 **VLM** (`vlm/`): LoRA fine-tune of Qwen3.5-4B (4-bit, MLX) that answers
 in English: `Pattern found at (243, 241). Confidence: high.` It learns the
