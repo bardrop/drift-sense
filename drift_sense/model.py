@@ -2,6 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from drift_sense.dataset import HEAT
+
 def _block(cin, cout, stride=1):
     return nn.Sequential(
         nn.Conv2d(cin, cout, 3, stride=stride, padding=1),
@@ -19,6 +21,10 @@ class SiameseLocator(nn.Module):
         )  # total stride 4: ref 50->13, search 500->125
         self.scale = nn.Parameter(torch.tensor(10.0))
         self.bias = nn.Parameter(torch.tensor(-5.0))
+        # The die is periodic: several crossings look identical. Correlation is
+        # translation-invariant, so it cannot pick the right copy. This map
+        # learns the drift prior: the true match sits near the nominal spot.
+        self.pos_bias = nn.Parameter(torch.zeros(HEAT, HEAT))
 
     def forward(self, ref, search):
         fr = F.normalize(self.encoder(ref), dim=1)      # (B,64,13,13)
@@ -28,7 +34,7 @@ class SiameseLocator(nn.Module):
             corr = F.conv2d(fs[i : i + 1], fr[i].unsqueeze(0), padding=6)
             outs.append(corr[0, 0] / fr[i].numel() ** 0.5)
         heat = torch.stack(outs)                        # (B,125,125)
-        return heat * self.scale + self.bias
+        return heat * self.scale + self.bias + self.pos_bias
 
 def soft_argmax_peak(logits):
     h, w = logits.shape
@@ -42,5 +48,8 @@ def soft_argmax_peak(logits):
     xs = torch.arange(x0, x1, dtype=torch.float32, device=logits.device)
     hy = float((weights.sum(dim=1) * ys).sum())
     hx = float((weights.sum(dim=0) * xs).sum())
-    conf = float(torch.sigmoid(logits[py, px]))
+    # Confidence = probability mass near the peak under a full-map softmax.
+    # Ambiguous matches spread mass across competing peaks and score low.
+    probs = torch.softmax(logits.flatten(), dim=0).reshape(h, w)
+    conf = float(probs[y0:y1, x0:x1].sum())
     return hx, hy, conf

@@ -14,7 +14,11 @@ def train_one_epoch(model, loader, opt, device):
     for ref, search, target, _ in loader:
         ref, search, target = ref.to(device), search.to(device), target.to(device)
         logits = model(ref, search)
-        loss = F.binary_cross_entropy_with_logits(logits, target)
+        # Softmax CE over the whole heatmap: peaks compete directly, so the
+        # position prior gets gradient exactly where a wrong crossing wins.
+        target_p = target.flatten(1)
+        target_p = target_p / target_p.sum(dim=1, keepdim=True)
+        loss = -(target_p * F.log_softmax(logits.flatten(1), dim=1)).sum(dim=1).mean()
         opt.zero_grad()
         loss.backward()
         opt.step()
